@@ -31,14 +31,14 @@ public class MeuConsultorio {
                     menuCadMedicamentos();
                     break;
                 case 3:
-                    //agendaConsultas();
+                    agendaConsultas();
                     break;
                 case 4:
-                    //agendaConsultas();
+                    cadastraConsultas();
                     ;
                     break;
                 case 5:
-                    //registraConsultas();
+                    historicoDeConsultas();
                     break;
                 case 6:
                     System.out.println("Volte sempre!!");
@@ -97,7 +97,19 @@ public class MeuConsultorio {
             }
         } while (opcao != 3);
     }
-    
+
+    private void agendaConsultas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void cadastraConsultas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void historicoDeConsultas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -106,5 +118,4 @@ public class MeuConsultorio {
         MeuConsultorio executa = new MeuConsultorio();
         executa.menuPrincipal();
     }
-
 }
