@@ -8,7 +8,7 @@ import util.Console;
  */
 public class MeuConsultorio {
 
-    CadPaciente cadPaciente = new CadPaciente();
+    CadastraPaciente cadPaciente = new CadastraPaciente();
 
     public MeuConsultorio() {
         menuPrincipal();
@@ -70,6 +70,7 @@ public class MeuConsultorio {
                     cadPacientes();
                     break;
                 case 2:
+                    consultaPacientes();
                     break;
                 case 3:
                     System.out.println("Retornando ao menu anterior.");
@@ -118,15 +119,22 @@ public class MeuConsultorio {
 
     private void cadPacientes() {
         String var1 = null;
-        int var2 = 0;
         var1 = Console.scanString("\nInforme o nome do paciente: ");
         cadPaciente.setNome(var1);
         var1 = Console.scanString("\nInforme a data de nascimento do paciente: ");
         cadPaciente.setDataNascimento(var1);
-        var2 = Console.scanInt("\nInforme o RG do paciente: ");
-        cadPaciente.setRg(var2);
+        var1 = Console.scanString("\nInforme o RG do paciente: ");
+        cadPaciente.setRg(var1);
     }
 
+    
+    private void consultaPacientes() {
+        System.out.println("--------------------------------");
+        System.out.println("Nome: " + cadPaciente.getNome() +
+                           "\nData de Nascimento: " + cadPaciente.getDataNascimento() +
+                           "\nRG: " + cadPaciente.getRg());
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -135,4 +143,5 @@ public class MeuConsultorio {
         MeuConsultorio executa = new MeuConsultorio();
         executa.menuPrincipal();
     }
+
 }
