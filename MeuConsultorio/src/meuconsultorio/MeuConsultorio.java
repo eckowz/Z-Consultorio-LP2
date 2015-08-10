@@ -8,6 +8,12 @@ import util.Console;
  */
 public class MeuConsultorio {
 
+    CadPaciente cadPaciente = new CadPaciente();
+
+    public MeuConsultorio() {
+        menuPrincipal();
+    }
+
     public void menuPrincipal() {
 
         @SuppressWarnings("UnusedAssignment")
@@ -49,10 +55,8 @@ public class MeuConsultorio {
         } while (opcao != 6);
     }
 
-    public MeuConsultorio() {
-    }
-
     private void menuCadPacientes() {
+        @SuppressWarnings("UnusedAssignment")
         int opcao = 0;
         do {
             System.out.println("--------------------------------");
@@ -63,6 +67,7 @@ public class MeuConsultorio {
             opcao = Console.scanInt("Informe o menu desejado: ");
             switch (opcao) {
                 case 1:
+                    cadPacientes();
                     break;
                 case 2:
                     break;
@@ -76,6 +81,7 @@ public class MeuConsultorio {
     }
 
     private void menuCadMedicamentos() {
+        @SuppressWarnings("UnusedAssignment")
         int opcao = 0;
         do {
             System.out.println("--------------------------------");
@@ -108,6 +114,17 @@ public class MeuConsultorio {
 
     private void historicoDeConsultas() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void cadPacientes() {
+        String var1 = null;
+        int var2 = 0;
+        var1 = Console.scanString("\nInforme o nome do paciente: ");
+        cadPaciente.setNome(var1);
+        var1 = Console.scanString("\nInforme a data de nascimento do paciente: ");
+        cadPaciente.setDataNascimento(var1);
+        var2 = Console.scanInt("\nInforme o RG do paciente: ");
+        cadPaciente.setRg(var2);
     }
 
     /**

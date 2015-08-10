@@ -1,4 +1,3 @@
-
 package meuconsultorio;
 
 /**
@@ -22,8 +21,16 @@ public class CadPaciente {
         return DataNascimento;
     }
 
+    public void setDataNascimento(String DataNascimento) {
+        this.DataNascimento = DataNascimento;
+    }
+
     public int getRg() {
         return rg;
+    }
+
+    public void setRg(int rg) {
+        this.rg = rg;
     }
 
     public CadPaciente(String nome, String DataNascimento, int rg) {
@@ -32,4 +39,7 @@ public class CadPaciente {
         this.rg = rg;
     }
 
+    public CadPaciente() {
+
+    }
 }
