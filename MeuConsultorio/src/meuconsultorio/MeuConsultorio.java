@@ -118,6 +118,7 @@ public class MeuConsultorio {
     }
 
     private void cadPacientes() {
+        @SuppressWarnings("UnusedAssignment")
         String var1 = null;
         var1 = Console.scanString("\nInforme o nome do paciente: ");
         cadPaciente.setNome(var1);
