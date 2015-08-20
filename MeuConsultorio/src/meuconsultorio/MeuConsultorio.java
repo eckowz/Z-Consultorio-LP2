@@ -11,12 +11,13 @@ import util.Console;
  */
 public class MeuConsultorio {
 
-    private List<Paciente> listaPacientes = new ArrayList<Paciente>();
+    @SuppressWarnings({"FieldMayBeFinal"})
+    private List<Paciente> listaPacientes;
 
+    @SuppressWarnings("Convert2Diamond")
     public MeuConsultorio() {
-
+        this.listaPacientes = new ArrayList<Paciente>();
         menuPrincipal();
-        int op = -1;
     }
 
     private void menuPrincipal() {
