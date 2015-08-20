@@ -14,15 +14,6 @@ public class Medicamento {
     private int codigo;
     private String nome, descricao;
 
-    public Medicamento() {
-    }
-
-    public Medicamento(int codigo, String nome, String descricao) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.descricao = descricao;
-    }
-
     public int getCodigo() {
         return codigo;
     }
@@ -33,6 +24,16 @@ public class Medicamento {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public Medicamento() {
+
+    }
+
+    public Medicamento(int codigo, String nome, String descricao) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.descricao = descricao;
     }
 
 }
