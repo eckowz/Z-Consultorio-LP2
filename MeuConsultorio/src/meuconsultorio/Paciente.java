@@ -6,7 +6,9 @@ package meuconsultorio;
  */
 public class Paciente {
 
-    private String nome, dataNascimento, rg;
+    private String nome;
+    private String dataNascimento;
+    private String rg;
 
     public String getNome() {
         return nome;
@@ -29,5 +31,5 @@ public class Paciente {
     public Paciente() {
 
     }
-    
+
 }
