@@ -3,7 +3,7 @@ package meuconsultorio;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
-import util.Console;
+import util.ConsoleUtil;
 
 /**
  *
@@ -35,7 +35,7 @@ public class MeuConsultorio {
             System.out.println("6 - Sair");
             System.out.println("--------------------------------");
             try {
-                op = Console.scanInt("Informe o menu desejado: ");
+                op = ConsoleUtil.scanInt("Informe o menu desejado: ");
                 switch (op) {
                     case 1:
                         menuCadPacientes();
@@ -75,7 +75,7 @@ public class MeuConsultorio {
             System.out.println("3 - Sair");
             System.out.println("--------------------------------");
             try {
-                op = Console.scanInt("Informe o menu desejado: ");
+                op = ConsoleUtil.scanInt("Informe o menu desejado: ");
 
                 switch (op) {
                     case 1:
@@ -105,7 +105,7 @@ public class MeuConsultorio {
             System.out.println("2 - Visualizar todos os medicamentos.");
             System.out.println("3 - Sair");
             System.out.println("--------------------------------");
-            opcao = Console.scanInt("Informe o menu desejado: ");
+            opcao = ConsoleUtil.scanInt("Informe o menu desejado: ");
             switch (opcao) {
                 case 1:
                     break;
@@ -134,9 +134,9 @@ public class MeuConsultorio {
 
     private void cadPacientes() {
         System.out.println("\nCadatro de paciente");
-        String rg = Console.scanString("RG: ");
-        String nome = Console.scanString("Nome: ");
-        String dataNascimento = Console.scanString("Data de Nascimento: ");
+        String rg = ConsoleUtil.scanString("RG: ");
+        String nome = ConsoleUtil.scanString("Nome: ");
+        String dataNascimento = ConsoleUtil.scanString("Data de Nascimento: ");
         Paciente paciente = new Paciente(rg, nome, dataNascimento);
         listaPacientes.add(paciente);
     }

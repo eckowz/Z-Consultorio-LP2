@@ -3,7 +3,7 @@ package util;
 import java.util.Scanner;
 
 
-public class Console {
+public class ConsoleUtil {
 	
 	public static String scanString(Object out)
 	{
