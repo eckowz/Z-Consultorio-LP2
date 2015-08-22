@@ -1,6 +1,7 @@
 package meuconsultorio;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
 import util.ConsoleUtil;
@@ -11,12 +12,10 @@ import util.ConsoleUtil;
  */
 public class MeuConsultorio {
 
-    @SuppressWarnings({"FieldMayBeFinal"})
-    private List<Paciente> listaPacientes;
-
     @SuppressWarnings("Convert2Diamond")
     public MeuConsultorio() {
-        this.listaPacientes = new ArrayList<Paciente>();
+        RepositorioPacientes repositorioPacientes = new RepositorioPacientes();
+        //this.listaPacientes = new ArrayList<Paciente>();
         menuPrincipal();
     }
 
@@ -136,9 +135,10 @@ public class MeuConsultorio {
         System.out.println("\nCadatro de paciente");
         String rg = ConsoleUtil.scanString("RG: ");
         String nome = ConsoleUtil.scanString("Nome: ");
-        String dataNascimento = ConsoleUtil.scanString("Data de Nascimento: ");
-        Paciente paciente = new Paciente(rg, nome, dataNascimento);
-        listaPacientes.add(paciente);
+        String dataNascimento = ConsoleUtil.scanString("Data de Nascimento(dia/mes/ano): ");
+        Date dataNasc = DateUtil.stringToDate(dataString);
+        Paciente paciente = new Paciente(rg, nome, dataNasc);
+        repositorioPacientes.add(paciente);
     }
 
     private void consultaPacientes() {
