@@ -1,10 +1,12 @@
 package meuconsultorio;
 
-import java.util.ArrayList;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.ConsoleUtil;
+import util.DateUtil;
 
 /**
  *
@@ -12,10 +14,10 @@ import util.ConsoleUtil;
  */
 public class MeuConsultorio {
 
-    @SuppressWarnings("Convert2Diamond")
+    RepositorioPacientes repositorioPacientes = new RepositorioPacientes();
+
     public MeuConsultorio() {
-        RepositorioPacientes repositorioPacientes = new RepositorioPacientes();
-        //this.listaPacientes = new ArrayList<Paciente>();
+
         menuPrincipal();
     }
 
@@ -59,7 +61,7 @@ public class MeuConsultorio {
                         System.out.println("Opção incorreta.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Opção errada, não pode informar letras");
+                System.out.println("Opção errada, não pode informar letras ou caracteres especiais.");
             }
         } while (op != 6);
     }
@@ -90,7 +92,7 @@ public class MeuConsultorio {
                         System.out.println("Opção incorreta.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Opção errada, não pode informar letras");
+                System.out.println("Opção errada, não pode informar letras ou caracteres especiais.");
             }
         } while (op != 3);
     }
@@ -132,27 +134,31 @@ public class MeuConsultorio {
     }
 
     private void cadPacientes() {
-        System.out.println("\nCadatro de paciente");
-        String rg = ConsoleUtil.scanString("RG: ");
-        String nome = ConsoleUtil.scanString("Nome: ");
-        String dataNascimento = ConsoleUtil.scanString("Data de Nascimento(dia/mes/ano): ");
-        Date dataNasc = DateUtil.stringToDate(dataString);
-        Paciente paciente = new Paciente(rg, nome, dataNasc);
-        repositorioPacientes.add(paciente);
+        try {
+            System.out.println("\nCadatro de paciente");
+            String rg = ConsoleUtil.scanString("RG: ");
+            String nome = ConsoleUtil.scanString("Nome: ");
+            String dataString = ConsoleUtil.scanString("Data de Nascimento(dia/mes/ano): ");
+            Date dataNasc = DateUtil.stringToDate(dataString);
+            Paciente paciente = new Paciente(rg, nome, dataNasc);
+            repositorioPacientes.adicionar(paciente);
+        } catch (ParseException ex) {
+            System.out.println("Formato de data errado! Operação cancelada!");
+        }
     }
 
     private void consultaPacientes() {
         System.out.println("\nLista de pacientes");
-        if (listaPacientes.isEmpty()) {
-            System.out.println("<<Lista Vazia>>");
+        if (!repositorioPacientes.temPacientes()) {
+            System.out.println("<<Lista Vazia, cadastre um paciente>>");
         } else {
             System.out.print(String.format("%-10s", "RG"));
             System.out.print(String.format("%-20s", "NOME"));
             System.out.println(String.format("%-10s", "NASCIMENTO"));
-            for (Paciente p : listaPacientes) {
+            for (Paciente p : repositorioPacientes.getListaPacientes()) {
                 System.out.print(String.format("%-10s", p.getRg()));
                 System.out.print(String.format("%-20s", p.getNome()));
-                System.out.println(String.format("%-10s", p.getDataNascimento()));
+                System.out.println(String.format("%-10s", DateUtil.dateToString(p.getDataNascimento())));
             }
         }
     }
