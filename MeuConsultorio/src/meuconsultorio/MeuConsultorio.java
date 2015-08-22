@@ -3,8 +3,6 @@ package meuconsultorio;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import util.ConsoleUtil;
 import util.DateUtil;
 
@@ -15,6 +13,7 @@ import util.DateUtil;
 public class MeuConsultorio {
 
     RepositorioPacientes repositorioPacientes = new RepositorioPacientes();
+    RepositorioMedicamentos repositorioMedicamentos = new RepositorioMedicamentos();
 
     public MeuConsultorio() {
 
@@ -109,8 +108,10 @@ public class MeuConsultorio {
             opcao = ConsoleUtil.scanInt("Informe o menu desejado: ");
             switch (opcao) {
                 case 1:
+                    cadMedicamentos();
                     break;
                 case 2:
+                    consultaMedicamentos();
                     break;
                 case 3:
                     System.out.println("Retornando ao menu anterior.");
@@ -161,6 +162,23 @@ public class MeuConsultorio {
                 System.out.println(String.format("%-10s", DateUtil.dateToString(p.getDataNascimento())));
             }
         }
+    }
+
+    private void cadMedicamentos() {
+        try {
+            System.out.println("\nCadatro de medicamento");
+            int codigo = ConsoleUtil.scanInt("Codigo: ");
+            String nome = ConsoleUtil.scanString("Nome: ");
+            String descricao = ConsoleUtil.scanString("Descrição: ");
+            Medicamento medicamento = new Medicamento(codigo, nome, descricao);
+            repositorioMedicamentos.adicionar(medicamento);
+        } catch (InputMismatchException err) {
+            System.out.println("Caracter inválido, tente novamente.");
+        }
+    }
+
+    private void consultaMedicamentos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
