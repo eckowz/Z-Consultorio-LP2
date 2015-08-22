@@ -16,7 +16,6 @@ public class MeuConsultorio {
     RepositorioMedicamentos repositorioMedicamentos = new RepositorioMedicamentos();
 
     public MeuConsultorio() {
-
         menuPrincipal();
     }
 
@@ -24,7 +23,6 @@ public class MeuConsultorio {
 
         @SuppressWarnings("UnusedAssignment")
         int op = -1;
-
         do {
             System.out.println("\nMenu: ");
             System.out.println("1 - Cadastro de pacientes.");
@@ -198,7 +196,7 @@ public class MeuConsultorio {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        MeuConsultorio meuConsultorio = new MeuConsultorio();
+        MeuConsultorio vaiPlaneta = new MeuConsultorio();
     }
 
 }
