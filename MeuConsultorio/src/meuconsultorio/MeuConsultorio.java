@@ -178,7 +178,19 @@ public class MeuConsultorio {
     }
 
     private void consultaMedicamentos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("\nLista de medicamentos");
+        if (!repositorioMedicamentos.temMedicamentos()) {
+            System.out.println("<<Lista Vazia, cadastre um medicamento>>");
+        } else {
+            System.out.print(String.format("%-10s", "CÒDIGO"));
+            System.out.print(String.format("%-30s", "NOME"));
+            System.out.println(String.format("%-10s", "DESCRIÇÃO"));
+            for (Medicamento p : repositorioMedicamentos.getListaMedicamentos()) {
+                System.out.print(String.format("%-10s", p.getCodigo()));
+                System.out.print(String.format("%-30s", p.getNome()));
+                System.out.println(String.format("%-10s", p.getDescricao()));
+            }
+        }
     }
 
     /**
