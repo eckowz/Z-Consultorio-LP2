@@ -30,4 +30,11 @@ public class Paciente {
         return dataNascimento;
     }
 
+    public Paciente() {
+    }
+
+    public Paciente(String rg) {
+        this.rg = rg;
+    }
+
 }

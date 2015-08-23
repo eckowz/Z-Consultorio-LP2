@@ -16,7 +16,17 @@ public class MeuConsultorio {
     RepositorioMedicamentos repositorioMedicamentos = new RepositorioMedicamentos();
 
     public MeuConsultorio() {
-        menuPrincipal();
+
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        MeuConsultorio vaiPlaneta = new MeuConsultorio();
+        vaiPlaneta.menuPrincipal();
+        
     }
 
     private void menuPrincipal() {
@@ -42,7 +52,7 @@ public class MeuConsultorio {
                         menuCadMedicamentos();
                         break;
                     case 3:
-                        agendaConsultas();
+                        menuAgendaConsultas();
                         break;
                     case 4:
                         cadastraConsultas();
@@ -120,8 +130,43 @@ public class MeuConsultorio {
         } while (opcao != 3);
     }
 
-    private void agendaConsultas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void menuAgendaConsultas() {
+
+        int op = -1;
+        do {
+            System.out.println("--------------------------------");
+            System.out.println("1 - Agendar paciente.");
+            System.out.println("2 - Consultar agenda.");
+            System.out.println("3 - Desmarcar paciente.");
+            System.out.println("4 - Alterar horário de paciente.");
+            System.out.println("5 - Sair");
+            System.out.println("--------------------------------");
+            try {
+                op = ConsoleUtil.scanInt("Informe o menu desejado: ");
+
+                switch (op) {
+                    case 1:
+                        cadAgenda();
+                        break;
+                    case 2:
+                        consultaAgenda();
+                        break;
+                    case 3:
+                        desmarcaAgenda();
+                        break;
+                    case 4:
+                        alteraAgenda();
+                        break;
+                    case 5:
+                        System.out.println("Retornando ao menu anterior.");
+                        break;
+                    default:
+                        System.out.println("Opção incorreta.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Opção errada, não pode informar letras ou caracteres especiais.");
+            }
+        } while (op != 5);
     }
 
     private void cadastraConsultas() {
@@ -191,12 +236,20 @@ public class MeuConsultorio {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        MeuConsultorio vaiPlaneta = new MeuConsultorio();
+    private void cadAgenda() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void consultaAgenda() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void desmarcaAgenda() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void alteraAgenda() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -1,23 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package meuconsultorio;
+
+import java.util.Date;
 
 /**
  *
- * @author 631120345
+ * @author gserafini
  */
-public class Horario {
-    /**
-     * RESPONSABILIDADES
-     * informar e visualizar paciente
-     * informar e visualizar data e hora
-     * 
-     * COLABORAÇÕES
-     * paciente
-     * date
-     * 
-     */    
+public class Horario extends Paciente {
+
+    private Date dataHora;
+
+    public Date getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(Date dataHora) {
+        this.dataHora = dataHora;
+    }
+
+    public Horario(String rg, Date dataHora) {
+        super(rg);
+        this.dataHora = dataHora;
+    }
+
 }
