@@ -265,7 +265,23 @@ public class MeuConsultorio {
     }
 
     private void desmarcaAgenda() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int cod=1;
+        System.out.println("\nLista de agendamentos");
+        if (!repositorioHorario.temHorarios()) {
+            System.out.println("<<Lista Vazia, nenhum agendamento cadastrado>>");
+        } else {
+            System.out.print(String.format("%-10s", "CÓDIGO"));
+            System.out.print(String.format("%-10s", "RG"));
+            System.out.println(String.format("%-10s", "DATA DA CONSULTA"));
+            for (Horario h : repositorioHorario.getListaHorarios()) {
+                System.out.print(String.format("%-10s", cod)); cod=cod++;
+                System.out.print(String.format("%-10s", h.getRg()));
+                System.out.println(String.format("%-10s", DateUtil.dateHourToString(h.getDataHora())));
+            }
+        }
+        int x = ConsoleUtil.scanInt("\nInforme o código da consulta a ser removida:");
+        repositorioHorario.remover(x-1);
+        
     }
 
     private void alteraAgenda() {

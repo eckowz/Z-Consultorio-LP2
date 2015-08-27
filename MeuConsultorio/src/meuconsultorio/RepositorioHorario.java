@@ -30,6 +30,10 @@ public class RepositorioHorario {
     public void adicionar(Horario horario){
         listaHorarios.add(horario);
     }
+    
+    public void remover(int numeroAgenda){
+        listaHorarios.remove(numeroAgenda);
+    }
 
     public ArrayList<Horario> getListaHorarios() {
         return listaHorarios;
