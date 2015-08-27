@@ -6,6 +6,7 @@
 package meuconsultorio;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -20,10 +21,10 @@ import java.util.ArrayList;
  * COLABORAÇÕES horario date
  *
  */
-public class RepositorioHorario {
+public class RepositorioHorarios {
     private ArrayList<Horario> listaHorarios;
     
-    public RepositorioHorario(){
+    public RepositorioHorarios(){
         listaHorarios= new ArrayList<Horario>();        
     }
     
@@ -39,11 +40,11 @@ public class RepositorioHorario {
         return listaHorarios;
     }
     
-    public Horario buscarHorarioPorRg(String rg)
+    public Horario buscarHorarioPorData(Date dataHora)
     {
         for(Horario p: listaHorarios)
         {
-            if(p.getRg().equals(rg))
+            if(p.getDataHora().equals(dataHora))
             {
                 return(p);
             }
@@ -51,8 +52,8 @@ public class RepositorioHorario {
         return(null);
     }
     
-    public boolean existeHorario(String rg){
-        if(this.buscarHorarioPorRg(rg)!=null)
+    public boolean existeHorario(Date dataHora){
+        if(this.buscarHorarioPorData(dataHora)!=null)
             return true;
         else
             return false;

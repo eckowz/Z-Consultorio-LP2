@@ -14,7 +14,7 @@ public class MeuConsultorio {
 
     RepositorioPacientes repositorioPacientes = new RepositorioPacientes();
     RepositorioMedicamentos repositorioMedicamentos = new RepositorioMedicamentos();
-    RepositorioHorario repositorioHorario = new RepositorioHorario();
+    RepositorioHorarios repositorioHorario = new RepositorioHorarios();
 
     public MeuConsultorio() {
 
@@ -254,8 +254,12 @@ public class MeuConsultorio {
             } else {
                 String dataString = ConsoleUtil.scanString("Informe a data da Consulta(dia/mes/ano HH:mm): ");
                 Date dataAgenda = DateUtil.stringToDateHour(dataString);
-                Horario horario = new Horario(rgPaciente, dataAgenda);
-                repositorioHorario.adicionar(horario);
+                if (!repositorioHorario.existeHorario(dataAgenda)) {
+                    System.out.println("Horário já em uso.");
+                } else {
+                    Horario horario = new Horario(rgPaciente, dataAgenda);
+                    repositorioHorario.adicionar(horario);
+                }
             }
         } catch (ParseException err) {
             System.out.println("Caracter inválido, tente novamente.");
