@@ -40,7 +40,7 @@ public class MeuConsultorio {
             System.out.println("2 - Cadastro de medicamentos.");
             System.out.println("3 - Agendamento de consultas.");
             System.out.println("4 - Registro de consultas.");
-            System.out.println("5 - Histórico");
+            //System.out.println("5 - Histórico");
             System.out.println("6 - Sair");
             System.out.println("--------------------------------");
             try {
@@ -60,7 +60,7 @@ public class MeuConsultorio {
                         ;
                         break;
                     case 5:
-                        historicoDeConsultas();
+                        //historicoDeConsultas();
                         break;
                     case 6:
                         System.out.println("Volte sempre!!");
@@ -139,7 +139,7 @@ public class MeuConsultorio {
             System.out.println("1 - Agendar paciente.");
             System.out.println("2 - Consultar agenda.");
             System.out.println("3 - Desmarcar paciente.");
-            System.out.println("4 - Alterar horário de paciente.");
+            //System.out.println("4 - Alterar horário de paciente.");
             System.out.println("5 - Sair");
             System.out.println("--------------------------------");
             try {
@@ -156,7 +156,7 @@ public class MeuConsultorio {
                         desmarcaAgenda();
                         break;
                     case 4:
-                        alteraAgenda();
+                        //alteraAgenda();
                         break;
                     case 5:
                         System.out.println("Retornando ao menu anterior.");
@@ -182,11 +182,15 @@ public class MeuConsultorio {
         try {
             System.out.println("\nCadatro de paciente");
             String rg = ConsoleUtil.scanString("RG: ");
-            String nome = ConsoleUtil.scanString("Nome: ");
-            String dataString = ConsoleUtil.scanString("Data de Nascimento(dia/mes/ano): ");
-            Date dataNasc = DateUtil.stringToDate(dataString);
-            Paciente paciente = new Paciente(rg, nome, dataNasc);
-            repositorioPacientes.adicionar(paciente);
+            if (repositorioPacientes.existePaciente(rg)) {
+                System.out.println("RG já cadastrado.");
+            } else {
+                String nome = ConsoleUtil.scanString("Nome: ");
+                String dataString = ConsoleUtil.scanString("Data de Nascimento(dia/mes/ano): ");
+                Date dataNasc = DateUtil.stringToDate(dataString);
+                Paciente paciente = new Paciente(rg, nome, dataNasc);
+                repositorioPacientes.adicionar(paciente);
+            }
         } catch (ParseException ex) {
             System.out.println("Formato de data errado! Operação cancelada!");
         }
@@ -212,10 +216,14 @@ public class MeuConsultorio {
         try {
             System.out.println("\nCadatro de medicamento");
             int codigo = ConsoleUtil.scanInt("Codigo: ");
-            String nome = ConsoleUtil.scanString("Nome: ");
-            String descricao = ConsoleUtil.scanString("Descrição: ");
-            Medicamento medicamento = new Medicamento(codigo, nome, descricao);
-            repositorioMedicamentos.adicionar(medicamento);
+            if (repositorioMedicamentos.existeMedicamento(codigo)) {
+                System.out.println("Código já cadastrado.");
+            } else {
+                String nome = ConsoleUtil.scanString("Nome: ");
+                String descricao = ConsoleUtil.scanString("Descrição: ");
+                Medicamento medicamento = new Medicamento(codigo, nome, descricao);
+                repositorioMedicamentos.adicionar(medicamento);
+            }
         } catch (InputMismatchException err) {
             System.out.println("Caracter inválido, tente novamente.");
         }
@@ -241,10 +249,14 @@ public class MeuConsultorio {
         try {
             System.out.println("\nAgendamentos");
             String rgPaciente = ConsoleUtil.scanString("RG do Paciente: ");
-            String dataString = ConsoleUtil.scanString("Informe a data da Consulta(dia/mes/ano HH:mm): ");
-            Date dataAgenda = DateUtil.stringToDateHour(dataString);
-            Horario horario = new Horario(rgPaciente, dataAgenda);
-            repositorioHorario.adicionar(horario);
+            if (!repositorioPacientes.existePaciente(rgPaciente)) {
+                System.out.println("RG inválido.");
+            } else {
+                String dataString = ConsoleUtil.scanString("Informe a data da Consulta(dia/mes/ano HH:mm): ");
+                Date dataAgenda = DateUtil.stringToDateHour(dataString);
+                Horario horario = new Horario(rgPaciente, dataAgenda);
+                repositorioHorario.adicionar(horario);
+            }
         } catch (ParseException err) {
             System.out.println("Caracter inválido, tente novamente.");
         }
@@ -265,23 +277,27 @@ public class MeuConsultorio {
     }
 
     private void desmarcaAgenda() {
-        int cod=1;
-        System.out.println("\nLista de agendamentos");
-        if (!repositorioHorario.temHorarios()) {
-            System.out.println("<<Lista Vazia, nenhum agendamento cadastrado>>");
-        } else {
-            System.out.print(String.format("%-10s", "CÓDIGO"));
-            System.out.print(String.format("%-10s", "RG"));
-            System.out.println(String.format("%-10s", "DATA DA CONSULTA"));
-            for (Horario h : repositorioHorario.getListaHorarios()) {
-                System.out.print(String.format("%-10s", cod)); cod=cod++;
-                System.out.print(String.format("%-10s", h.getRg()));
-                System.out.println(String.format("%-10s", DateUtil.dateHourToString(h.getDataHora())));
+        try {
+            int cod = 1;
+            System.out.println("\nLista de agendamentos");
+            if (!repositorioHorario.temHorarios()) {
+                System.out.println("<<Lista Vazia, nenhum agendamento cadastrado>>");
+            } else {
+                System.out.print(String.format("%-10s", "CÓDIGO"));
+                System.out.print(String.format("%-10s", "RG"));
+                System.out.println(String.format("%-10s", "DATA DA CONSULTA"));
+                for (Horario h : repositorioHorario.getListaHorarios()) {
+                    System.out.print(String.format("%-10s", cod));
+                    cod = cod + 1;
+                    System.out.print(String.format("%-10s", h.getRg()));
+                    System.out.println(String.format("%-10s", DateUtil.dateHourToString(h.getDataHora())));
+                }
             }
+            int x = ConsoleUtil.scanInt("\nInforme o código da consulta a ser removida:");
+            repositorioHorario.remover(x - 1);
+        } catch (IndexOutOfBoundsException err) {
+            System.out.println("Código da consulta inexistente ou inválido.");
         }
-        int x = ConsoleUtil.scanInt("\nInforme o código da consulta a ser removida:");
-        repositorioHorario.remover(x-1);
-        
     }
 
     private void alteraAgenda() {
