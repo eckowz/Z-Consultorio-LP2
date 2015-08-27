@@ -251,7 +251,17 @@ public class MeuConsultorio {
     }
 
     private void consultaAgenda() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("\nLista de agendamentos");
+        if (!repositorioHorario.temHorarios()) {
+            System.out.println("<<Lista Vazia, nenhum agendamento cadastrado>>");
+        } else {
+            System.out.print(String.format("%-10s", "RG"));
+            System.out.println(String.format("%-10s", "DATA DA CONSULTA"));
+            for (Horario h : repositorioHorario.getListaHorarios()) {
+                System.out.print(String.format("%-10s", h.getRg()));
+                System.out.println(String.format("%-10s", DateUtil.dateHourToString(h.getDataHora())));
+            }
+        }
     }
 
     private void desmarcaAgenda() {
