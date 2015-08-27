@@ -19,11 +19,11 @@ import java.util.ArrayList;
  *
  * COLABORAÇÕES horario date
  *
- *//*
+ */
 public class RepositorioHorario {
     private ArrayList<Horario> listaHorarios;
     
-    public RepositorioHorarios(){
+    public RepositorioHorario(){
         listaHorarios= new ArrayList<Horario>();        
     }
     
@@ -71,4 +71,4 @@ public class RepositorioHorario {
         return !listaHorarios.isEmpty();
     }
     
-}*/
+}

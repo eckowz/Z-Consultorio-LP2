@@ -14,6 +14,7 @@ public class MeuConsultorio {
 
     RepositorioPacientes repositorioPacientes = new RepositorioPacientes();
     RepositorioMedicamentos repositorioMedicamentos = new RepositorioMedicamentos();
+    RepositorioHorario repositorioHorario = new RepositorioHorario();
 
     public MeuConsultorio() {
 
@@ -26,7 +27,7 @@ public class MeuConsultorio {
         // TODO code application logic here
         MeuConsultorio vaiPlaneta = new MeuConsultorio();
         vaiPlaneta.menuPrincipal();
-        
+
     }
 
     private void menuPrincipal() {
@@ -237,7 +238,16 @@ public class MeuConsultorio {
     }
 
     private void cadAgenda() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            System.out.println("\nAgendamentos");
+            String rgPaciente = ConsoleUtil.scanString("RG do Paciente: ");
+            String dataString = ConsoleUtil.scanString("Informe a data da Consulta(dia/mes/ano HH:mm): ");
+            Date dataAgenda = DateUtil.stringToDateHour(dataString);
+            Horario horario = new Horario(rgPaciente, dataAgenda);
+            repositorioHorario.adicionar(horario);
+        } catch (ParseException err) {
+            System.out.println("Caracter inválido, tente novamente.");
+        }
     }
 
     private void consultaAgenda() {
